@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  color: var(--primary-color);
+}
+
+:root {
+  --primary-color: #0b406b;
+  --secondary-color: #7997b0;
+  --additional-color: #486f8f;
+
+  --delete-color: #ff7d7d;
+  --delete-background-color: #ffdcdc;
+  --edit-color: #7dbaff;
+  --edit-background-color: #dfeeff;
+  --save-color: #0b406b;
+  --save-background-color: #c2cfda;
+  --cancel-color: #7997b0;
+  --cancel-background-color: #e8edf5;
+
+  --done-color: #00bd7b;
+  --in-progress-color: #7d97ff;
+  --open-color: #ffaf7d;
+
+  --done-background-color: #bfeede;
+  --in-progress-background-color: #dfe5ff;
+  --open-background-color: #ffebdf;
+
+  --background-color: #e8edf5;
+  --main-background-color: #ffffff;
+}
+
+.status {
+  padding: 5px 30px;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 16px;
+  min-width: 180px;
+  text-align: center;
+  max-width: 100%;
+
+  &--open {
+    background-color: var(--open-background-color);
+    color: var(--open-color);
+  }
+
+  &--in-progress {
+    background-color: var(--in-progress-background-color);
+    color: var(--in-progress-color);
+  }
+
+  &--done {
+    background-color: var(--done-background-color);
+    color: var(--done-color);
+  }
+}
+
+.error {
+  color: red !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}

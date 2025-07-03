@@ -1,0 +1,17 @@
+.dropdown {
+  &__item {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    width: fit-content !important;
+    padding: 0 !important;
+    border-radius: 16px;
+    border: none;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}

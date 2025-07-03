@@ -1,0 +1,42 @@
+import { Button, Segmented } from "antd";
+import { PlusIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { TaskListTable } from "../task-list-table";
+import { CreateTask } from "@/features/create-task";
+import s from "./main.module.scss";
+
+type Display = "table" | "kanban";
+
+const Main = () => {
+  const [display, setDisplay] = useState<Display>("table");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(display);
+  }, [display]);
+
+  return (
+    <div className={s.main}>
+      <div className={s["main__header"]}>
+        <h1>Мои задачи</h1>
+        <Button variant="solid" onClick={() => setIsModalOpen(true)}>
+          <PlusIcon />
+          <span>Создать новую задачу</span>
+        </Button>
+      </div>
+      <Segmented
+        className={s["main__navigation"]}
+        options={[
+          { label: "Таблица", value: "table" },
+          { label: "Канбан-доска", value: "kanban" },
+        ]}
+        value={display}
+        onChange={(value) => setDisplay(value as Display)}
+      />
+      {display === "table" ? <TaskListTable /> : ""}
+      <CreateTask open={isModalOpen} closeModal={() => setIsModalOpen(false)} />
+    </div>
+  );
+};
+
+export default Main;
