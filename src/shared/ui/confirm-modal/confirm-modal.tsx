@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "antd";
-import s from "./confirm-modal.module.scss";
-import { CustomButton } from "../button";
+import styles from "./confirm-modal.module.scss";
+import { Button } from "../button";
 
 type ConfirmModalProps = {
   open: boolean;
@@ -23,18 +23,18 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
       open={open}
       footer={""}
       onCancel={onCancel}
-      title={<p className={s.modal__title}>{title}</p>}
+      title={<p className={styles.modal__title}>{title}</p>}
       centered
     >
-      <div className={s.modal}>
-        <p className={s.modal__text}>{content}</p>
-        <div className={s.modal__btns}>
-          <CustomButton onClick={onConfirm} variantBtn="delete">
+      <div className={styles.modal}>
+        <p className={styles.modal__text}>{content}</p>
+        <div className={styles.modal__btns}>
+          <Button onClick={onConfirm} state="delete">
             Удалить
-          </CustomButton>
-          <CustomButton onClick={onCancel} variantBtn="cancel">
+          </Button>
+          <Button onClick={onCancel} state="cancel">
             Отмена
-          </CustomButton>
+          </Button>
         </div>
       </div>
     </Modal>

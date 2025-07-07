@@ -1,1 +1,1 @@
-export { CustomTextArea } from "./text-area";
+export { TextArea } from "./text-area";

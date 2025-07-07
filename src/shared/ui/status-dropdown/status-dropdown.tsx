@@ -1,8 +1,8 @@
 import React from "react";
 import { Dropdown, Button, type MenuProps } from "antd";
-import type { TaskStatus } from "@/entities/task";
+import type { TaskStatus } from "@/entities/task/types";
 import { taskStatus } from "@/shared/lib";
-import s from "./status-dropdown.module.scss";
+import styles from "./status-dropdown.module.scss";
 
 type Props = {
   value: TaskStatus;
@@ -20,7 +20,7 @@ const TaskStatusDropdown: React.FC<Props> = ({ value, onChange }) => {
 
   return (
     <Dropdown menu={menu} trigger={["click"]}>
-      <Button className={s.dropdown__button}>{taskStatus[value]}</Button>
+      <Button className={styles.dropdown__button}>{taskStatus[value]}</Button>
     </Dropdown>
   );
 };

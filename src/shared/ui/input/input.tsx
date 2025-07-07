@@ -1,8 +1,8 @@
-import { Input } from "antd";
-import s from "./input.module.scss";
+import { Input as InputAntd, type InputProps } from "antd";
+import styles from "./input.module.scss";
 
-const CustomInput = ({ ...props }) => {
-  return <Input {...props} className={s.input} />;
+const Input = (props: InputProps) => {
+  return <InputAntd {...props} className={styles.input} />;
 };
 
-export { CustomInput };
+export { Input };

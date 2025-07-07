@@ -3,7 +3,7 @@
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
   border: none;
-  border-radius: 16px;
+  border-radius: var(--rounded);
   padding: 10px 20px;
   color: var(--primary-color);
   background-color: var(--background-color);

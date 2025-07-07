@@ -30,13 +30,18 @@
 
   --background-color: #e8edf5;
   --main-background-color: #ffffff;
+
+  --rounded-xs: 6px;
+  --rounded-sm: 13px;
+  --rounded: 16px;
+  --rounded-lg: 24px;
 }
 
 .status {
   padding: 5px 30px;
   font-weight: 700;
   font-size: 16px;
-  border-radius: 16px;
+  border-radius: var(--rounded);
   min-width: 180px;
   text-align: center;
   max-width: 100%;
@@ -58,7 +63,7 @@
 }
 
 .error {
-  color: red !important;
-  font-weight: 400 !important;
-  font-size: 14px !important;
+  color: red;
+  font-weight: 400;
+  font-size: 14px;
 }

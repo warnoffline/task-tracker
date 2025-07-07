@@ -24,7 +24,7 @@
       border: 0px;
       box-shadow: none;
       padding: 1.2em 1.5em;
-      border-radius: 16px;
+      border-radius: var(--rounded);
 
       &:hover {
         background-color: var(--background-color) !important;
@@ -35,11 +35,12 @@
 
   &__navigation {
     background-color: var(--background-color);
-    border-radius: 16px;
+    border-radius: var(--rounded);
     padding: 3px;
+
     label {
       width: 50%;
-      border-radius: 13px !important;
+      border-radius: var(--rounded-sm) !important;
       font-weight: 500;
       font-size: 16px;
       padding: 5px 0;

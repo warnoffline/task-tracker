@@ -1,8 +1,9 @@
 import { Input } from "antd";
-import s from "./text-area.module.scss";
+import { type TextAreaProps } from "antd/es/input";
+import styles from "./text-area.module.scss";
 
-const CustomTextArea = ({ ...props }) => {
-  return <Input.TextArea {...props} className={s["text-area"]} />;
+const TextArea = (props: TextAreaProps) => {
+  return <Input.TextArea {...props} className={styles["text-area"]} />;
 };
 
-export { CustomTextArea };
+export { TextArea };

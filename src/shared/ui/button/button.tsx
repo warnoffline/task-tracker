@@ -1,26 +1,25 @@
 import clsx from "clsx";
-import { Button } from "antd";
-import s from "./button.module.scss";
+import {
+  Button as ButtonAntd,
+  type ButtonProps as ButtonPropsAntd,
+} from "antd";
+import styles from "./button.module.scss";
 
-type CustomButtonProps = {
-  variantBtn?: "delete" | "save" | "cancel" | "edit";
-} & React.ComponentProps<typeof Button>;
+type ButtonProps = {
+  state?: "delete" | "save" | "cancel" | "edit";
+} & ButtonPropsAntd;
 
-const CustomButton: React.FC<CustomButtonProps> = ({
-  variantBtn,
-  className,
-  ...props
-}) => {
+const Button: React.FC<ButtonProps> = ({ state, className, ...props }) => {
   return (
-    <Button
+    <ButtonAntd
       {...props}
       className={clsx(
-        s.button,
-        variantBtn && s[`button-${variantBtn}`],
+        styles.button,
+        state && styles[`button-${state}`],
         className
       )}
     />
   );
 };
 
-export { CustomButton };
+export { Button };

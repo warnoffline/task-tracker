@@ -1,5 +1,5 @@
 .modal {
-  border-radius: 16px;
+  border-radius: var(--rounded);
 
   &__title {
     font-weight: 600;
@@ -7,8 +7,6 @@
   }
 
   &__body {
-    font-weight: 600;
-    font-size: 18px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -22,14 +20,14 @@
       width: 100%;
       background-color: var(--background-color);
       border: none;
-      border-radius: 16px;
+      border-radius: var(--rounded);
       padding: 22px 0;
       font-size: 18px;
       font-weight: 600;
       box-shadow: none;
 
       &:hover {
-        background-color: var(--background-color) !important;
+        background-color: var(--background-color);
         filter: brightness(0.9);
       }
     }

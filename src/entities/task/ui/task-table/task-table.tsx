@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { formatDate } from "@/shared/lib";
 import { TaskStatusDropdown } from "@/shared/ui";
 import { Button } from "antd";
-import {
-  type DBTaskDTO,
-  TaskDrawer,
-  useUpdateTaskStatus,
-} from "@/entities/task";
-import s from "./task-table.module.scss";
+import { type DBTaskDTO } from "../../types";
+import { useUpdateTaskStatus } from "../../api";
+import { TaskDrawer } from "../task-drawer";
+import styles from "./task-table.module.scss";
 
 type TaskTableProps = {
   task: DBTaskDTO;
@@ -29,8 +27,8 @@ const TaskTable: React.FC<TaskTableProps> = ({ task }) => {
   };
 
   return (
-    <div className={s["task"]}>
-      <div className={s["task__text"]}>
+    <div className={styles.task}>
+      <div className={styles.task__text}>
         <p>{task.name}</p>
         <p>{task.description}</p>
       </div>

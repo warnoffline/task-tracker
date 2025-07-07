@@ -5,9 +5,9 @@
   }
 
   &__button {
-    width: fit-content !important;
+    width: fit-content;
     padding: 0 !important;
-    border-radius: 16px;
+    border-radius: var(--rounded);
     border: none;
 
     &:hover {
