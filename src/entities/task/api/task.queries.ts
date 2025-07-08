@@ -9,6 +9,7 @@ export const taskQueries = {
       queryKey: taskQueries.all(),
       queryFn: fetchTasks,
       placeholderData: keepPreviousData,
+      select: (tasks) => tasks.slice().reverse(),
     }),
 
   detail: (id?: string) =>

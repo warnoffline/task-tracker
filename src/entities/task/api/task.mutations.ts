@@ -20,7 +20,7 @@ export const useCreateTask = () => {
 export const useUpdateTask = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (variables: { id: string; dto: TaskDTO }) =>
+    mutationFn: (variables: { id: string; dto: TaskDTO & TaskStatusDTO }) =>
       updateTask(variables.id, variables.dto),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["tasks"] });

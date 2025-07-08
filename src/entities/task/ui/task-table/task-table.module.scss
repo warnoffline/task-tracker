@@ -1,0 +1,39 @@
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+  padding: 15px 20px;
+  background-color: var(--main-background-color);
+  border-radius: var(--rounded-xs);
+
+  &__text {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+      width: 100px;
+    }
+  }
+
+  button {
+    flex-shrink: 0;
+    border: none;
+    background-color: var(--background-color);
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: none;
+    padding: 5px 30px;
+    border-radius: var(--rounded);
+
+    &:hover {
+      background-color: var(--background-color);
+      filter: brightness(0.9);
+    }
+  }
+}

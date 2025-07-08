@@ -1,0 +1,92 @@
+.drawer {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    p {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--additional-color);
+      white-space: pre-line;
+      word-wrap: break-word;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    h1 {
+      white-space: normal;
+      word-wrap: break-word;
+    }
+  }
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-title {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      p {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--additional-color);
+      }
+    }
+
+    &-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--secondary-color);
+
+      button {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--additional-color);
+    }
+
+    &-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--secondary-color);
+      white-space: pre-line;
+      word-wrap: break-word;
+    }
+  }
+
+  &__actionSlot {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      width: 48%;
+    }
+  }
+}

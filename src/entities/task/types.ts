@@ -22,3 +22,5 @@ export type SuccessDTO = {
 export type ErrorDTO = {
   message: string;
 };
+
+export type TaskStatus = "open" | "inProgress" | "done";

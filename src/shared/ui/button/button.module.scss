@@ -1,0 +1,60 @@
+.button {
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: none;
+  padding: 20px 30px;
+  border-radius: var(--rounded-lg);
+
+  &-delete {
+    background-color: var(--delete-background-color);
+
+    span {
+      color: var(--delete-color);
+    }
+
+    &:hover {
+      background-color: var(--delete-background-color) !important;
+      filter: brightness(0.9);
+    }
+  }
+
+  &-edit {
+    background-color: var(--edit-background-color);
+
+    span {
+      color: var(--edit-color);
+    }
+
+    &:hover {
+      background-color: var(--edit-background-color) !important;
+      filter: brightness(0.9);
+    }
+  }
+
+  &-save {
+    background-color: var(--save-background-color);
+
+    span {
+      color: var(--save-color);
+    }
+
+    &:hover {
+      background-color: var(--save-background-color) !important;
+      filter: brightness(0.9);
+    }
+  }
+
+  &-cancel {
+    background-color: var(--cancel-background-color);
+
+    span {
+      color: var(--cancel-color);
+    }
+
+    &:hover {
+      background-color: var(--cancel-background-color) !important;
+      filter: brightness(0.9);
+    }
+  }
+}
