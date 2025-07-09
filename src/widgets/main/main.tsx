@@ -3,6 +3,7 @@ import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { TaskListTable } from "../task-list-table";
 import { CreateTask } from "@/features/create-task";
+import ColumnBoard from '@/widgets/column-board/column-board';
 import styles from "./main.module.scss";
 
 type Display = "table" | "kanban";
@@ -29,7 +30,7 @@ const Main = () => {
         value={display}
         onChange={(value) => setDisplay(value as Display)}
       />
-      {display === "table" ? <TaskListTable /> : ""}
+      {display === "table" ? <TaskListTable /> : <ColumnBoard />}
       <CreateTask open={isModalOpen} closeModal={() => setIsModalOpen(false)} />
     </div>
   );
