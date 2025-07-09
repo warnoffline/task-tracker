@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { Card, Button } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
-import { TaskDrawer } from '@//entities/task/ui/task-drawer'; 
-import {type DBTaskDTO } from '@/entities/task/types' 
+import React, { useState } from "react";
+import { Card, Button } from "antd";
+import { EditOutlined } from "@ant-design/icons";
+import { TaskDrawer } from "@/entities/task/ui";
+import { type DBTaskDTO } from "@/entities/task/types";
+import { formatDate } from "@/shared/lib";
+import { useUpdateTaskStatus } from "@/entities/task/api";
+import styles from "./card-column.module.scss";
 
 interface CardColumnProps {
   task: DBTaskDTO;
@@ -10,27 +13,35 @@ interface CardColumnProps {
 
 const CardColumn: React.FC<CardColumnProps> = ({ task }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [currentStatus, setCurrentStatus] = useState<DBTaskDTO['status']>(task.status);
+  const [currentStatus, setCurrentStatus] = useState<DBTaskDTO["status"]>(
+    task.status
+  );
+
+  const { mutate: updateStatus } = useUpdateTaskStatus();
 
   const handleEdit = () => setDrawerOpen(true);
+
   const handleCloseDrawer = () => setDrawerOpen(false);
-  const handleStatusChange = (newStatus: DBTaskDTO['status']) => setCurrentStatus(newStatus);
+
+  const handleStatusChange = (newStatus: DBTaskDTO["status"]) => {
+    setCurrentStatus(newStatus);
+    updateStatus({ id: task.id, dto: { status: newStatus } });
+  };
 
   return (
     <>
       <Card
-        title={task.name}
+        title={<p className={styles.card__text}>{task.name}</p>}
         extra={<Button icon={<EditOutlined />} onClick={handleEdit} />}
         style={{
-          margin: '0 16px 12px 16px', // Отступы 16px слева/справа, 12px снизу
-          border: 'none',
-          background: '#FFFFFF',
-          borderRadius: 8,
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+          border: "none",
+          borderRadius: 10,
         }}
       >
-        <p>{task.description}</p>
-        <p>Дата: {task.changedAt}</p>
+        <div className={styles.card}>
+          <p className={styles.card__text}>{task.description}</p>
+          <p className={styles.card__date}>{formatDate(task.changedAt)}</p>
+        </div>
       </Card>
       <TaskDrawer
         task={task}

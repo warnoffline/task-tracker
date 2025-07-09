@@ -1,0 +1,37 @@
+.column {
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  margin-top: 13px;
+  border-radius: var(--rounded);
+  padding: "12px 0";
+
+  &__title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__empty {
+    height: 148px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-open {
+    background-color: var(--open-background-color);
+  }
+
+  &-inProgress {
+    background-color: var(--in-progress-background-color);
+  }
+
+  &-done {
+    background-color: var(--done-background-color);
+  }
+}

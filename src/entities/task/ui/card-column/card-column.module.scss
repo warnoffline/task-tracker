@@ -1,0 +1,20 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    width: 180px;
+  }
+
+  &__date {
+    text-align: end;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--additional-color);
+  }
+}

@@ -1,10 +1,10 @@
-import { Button, Segmented } from "antd";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { TaskListTable } from "../task-list-table";
 import { CreateTask } from "@/features/create-task";
-import ColumnBoard from '@/widgets/column-board/column-board';
+import { ColumnBoard } from "../column-board";
 import styles from "./main.module.scss";
+import { Button, Segmented } from "antd";
 
 type Display = "table" | "kanban";
 

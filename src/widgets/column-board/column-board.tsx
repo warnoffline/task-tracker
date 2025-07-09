@@ -1,42 +1,88 @@
-import React from 'react';
-import { Row } from 'antd';
-import TasksColumn from '@/features/create-task/tasks-column';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import {type DBTaskDTO } from '@/entities/task/types' 
+import React, { useState, useCallback, useEffect } from "react";
+import TasksColumn from "@/features/tasks-column/tasks-column";
+import { useQuery } from "@tanstack/react-query";
+import { taskQueries, useUpdateTaskStatus } from "@/entities/task/api";
+import { DragDropContext, type DropResult } from "@hello-pangea/dnd";
+import styles from "./column-board.module.scss";
+import type { TaskStatus } from "@/entities/task/types";
 
+type ColumnType = {
+  key: TaskStatus;
+  title: string;
+};
+
+const columns = [
+  { key: "open", title: "Открыто" },
+  { key: "inProgress", title: "В процессе" },
+  { key: "done", title: "Завершено" },
+] as ColumnType[];
 
 const ColumnBoard: React.FC = () => {
-  const queryClient = useQueryClient();
+  const { data: initialTasks, isLoading, error } = useQuery(taskQueries.list());
+  const { mutate: updateStatus } = useUpdateTaskStatus();
 
-  const { data: tasks = [] } = useQuery<DBTaskDTO[], Error>({
-    queryKey: ['tasks'],
-    queryFn: () => [
-      { id: '1', name: 'Задача 1', description: 'Описание...', status: 'open', changedAt: '02.02.2025' },
-      { id: '2', name: 'Задача 2', description: 'Описание...', status: 'inProgress', changedAt: '02.02.2025' },
-      { id: '3', name: 'Задача 3', description: 'Описание...', status: 'done', changedAt: '02.02.2025' },
-    ],
-    staleTime: 5 * 60 * 1000, // Опционально: данные свежие 5 минут
-  });
+  const [tasks, setTasks] = useState(initialTasks || []);
 
-  const columns = [
-    { key: 'open', title: 'Открыто' },
-    { key: 'inProgress', title: 'В процессе' },
-    { key: 'done', title: 'Завершено' },
-  ];
+  useEffect(() => {
+    if (initialTasks) setTasks(initialTasks);
+  }, [initialTasks]);
 
-  const getTasksByStatus = (status: string) => tasks.filter((task) => task.status === status);
+  const getTasksByStatus = useCallback(
+    (status: TaskStatus) => tasks.filter((t) => t.status === status),
+    [tasks]
+  );
 
-    return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0', width: '100%' }}>
-      <Row gutter={[8, 0]} style={{ display: 'flex', flexWrap: 'nowrap' }}>
-        {columns.map((column) => (
-          <TasksColumn
-            key={column.key}
-            title={column.title}
-            tasks={getTasksByStatus(column.key)}
-          />
-        ))}
-      </Row>
+  const handleDragEnd = ({ source, destination, draggableId }: DropResult) => {
+    if (!destination) return;
+    if (source.droppableId === destination.droppableId) return;
+
+    setTasks((prevTasks) => {
+      const taskToMove = prevTasks.find((t) => String(t.id) === draggableId);
+      if (!taskToMove) return prevTasks;
+
+      const updatedTasks = prevTasks.filter(
+        (t) => String(t.id) !== draggableId
+      );
+
+      const newTask = {
+        ...taskToMove,
+        status: destination.droppableId as TaskStatus,
+      };
+
+      const tasksInDest = updatedTasks.filter(
+        (t) => t.status === destination.droppableId
+      );
+      const otherTasks = updatedTasks.filter(
+        (t) => t.status !== destination.droppableId
+      );
+
+      tasksInDest.splice(destination.index, 0, newTask);
+
+      updateStatus({ id: taskToMove.id, dto: { status: newTask.status } });
+
+      return [...tasksInDest, ...otherTasks];
+    });
+  };
+
+  if (isLoading) return <div className={styles.no_items}>Loading...</div>;
+  if (error) return <div className={styles.no_items}>{error.message}</div>;
+  if (!tasks || tasks.length < 1)
+    return <div className={styles.no_items}>Нет задач</div>;
+
+  return (
+    <div className={styles.board}>
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <div className={styles.board__columns}>
+          {columns.map((column) => (
+            <TasksColumn
+              key={column.key}
+              status={column.key}
+              title={column.title}
+              tasks={getTasksByStatus(column.key)}
+            />
+          ))}
+        </div>
+      </DragDropContext>
     </div>
   );
 };
