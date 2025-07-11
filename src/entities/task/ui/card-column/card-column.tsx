@@ -32,7 +32,11 @@ const CardColumn: React.FC<CardColumnProps> = ({ task }) => {
     <>
       <Card
         title={<p className={styles.card__text}>{task.name}</p>}
-        extra={<Button icon={<EditOutlined />} onClick={handleEdit} />}
+        extra={
+          <Button 
+            icon={<EditOutlined />}
+            onClick={handleEdit} 
+          />}
         style={{
           border: "none",
           borderRadius: 10,
