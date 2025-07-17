@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  h1 {
+    font-size: 18px;
+  }
+
+  &__text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  &__date {
+    text-align: end;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--additional-color);
+    margin: 0;
+  }
+}
