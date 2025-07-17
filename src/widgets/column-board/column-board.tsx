@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import TasksColumn from "@/features/tasks-column/tasks-column";
 import { useQuery } from "@tanstack/react-query";
 import { taskQueries, useUpdateTaskStatus } from "@/entities/task/api";
@@ -15,7 +15,7 @@ const columns = [
   { key: "open", title: "Открыто" },
   { key: "inProgress", title: "В процессе" },
   { key: "done", title: "Завершено" },
-] as ColumnType[];
+] satisfies ColumnType[];
 
 const ColumnBoard: React.FC = () => {
   const { data: initialTasks, isLoading, error } = useQuery(taskQueries.list());
@@ -31,7 +31,7 @@ const ColumnBoard: React.FC = () => {
     (status: TaskStatus) => tasks.filter((t) => t.status === status),
     [tasks]
   );
-
+  
   const handleDragEnd = ({ source, destination, draggableId }: DropResult) => {
     if (!destination) return;
     if (source.droppableId === destination.droppableId) return;
